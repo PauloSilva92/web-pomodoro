@@ -4,7 +4,7 @@
   "description": "Uma versão web de um cronometro para uso da técnica de gerenciamento de tempo comodoro",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "keywords": [
     "comodoro",

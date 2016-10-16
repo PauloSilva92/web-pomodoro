@@ -32,35 +32,35 @@
 </head>
 <body>
 
-    <div id="cronometro"></div>
-    <button id="startButton" onclick="start()">Iniciar</button>
-    <button id="stopButton" onclick="stop()">Parar</button> <br>
-    <p class="footer">Criado por <a href="https://github.com/PauloSilva92" target="_blank">Paulo Roberto da Silva</a></p>
+    <div id="timer"></div>
+    <button id="startButton" onclick="start()">Start</button>
+    <button id="stopButton" onclick="stop()">Stop</button> <br>
+    <p class="footer">Developed by <a href="https://github.com/PauloSilva92" target="_blank">Paulo Roberto da Silva</a></p>
 
     <script>
-        var cronometro = document.getElementById('cronometro');
+        var timer = document.getElementById('timer');
         var startButton = document.getElementById('startButton');
         var stopButton = document.getElementById('stopButton');
         var audio = new Audio('alarm.mp3');
-        var segundos = 0;
-        var minutos = 0;
+        var seconds = 0;
+        var minutes = 0;
 
         stopButton.setAttribute('style','display:none');
-        setCronometro(minutos, segundos);
+        settimer(minutes, seconds);
 
         function start(){
-            segundos = 1;
+            seconds = 1;
             stopButton.setAttribute('style','display:float');
             startButton.setAttribute('style','display:none');
             contador = window.setInterval(function(){
-                if(segundos == 59){
-                    setCronometro(minutos, segundos);
-                    segundos = 0;
-                    minutos++;
+                if(seconds == 59){
+                    settimer(minutes, seconds);
+                    seconds = 0;
+                    minutes++;
                     return;
                 }
-                setCronometro(minutos, segundos);
-                segundos++;
+                settimer(minutes, seconds);
+                seconds++;
             },1000)
         }
 
@@ -69,23 +69,23 @@
             window.clearInterval(contador);
             startButton.setAttribute('style','display:float');
             stopButton.setAttribute('style','display:none');
-            segundos = 0;
-            minutos = 0;
-            setCronometro(minutos,segundos);
+            seconds = 0;
+            minutes = 0;
+            settimer(minutes,seconds);
         }
 
-        function setCronometro(minutos, segundos){
-            if(minutos>=25){
+        function settimer(minutes, seconds){
+            if(minutes>=25){
                 playAlarm();
                 return;
             }
-            if(minutos<10){
-                minutos = "0"+minutos;
+            if(minutes<10){
+                minutes = "0"+minutes;
             }
-            if(segundos<10){
-                segundos = "0"+segundos;
+            if(seconds<10){
+                seconds = "0"+seconds;
             }
-            cronometro.innerHTML = minutos+":"+segundos;
+            timer.innerHTML = minutes+":"+seconds;
         }
 
         function playAlarm(){

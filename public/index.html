@@ -25,13 +25,17 @@
             border: none;
             background-color: #ff6666;
         }
+        .footer{
+            font-size:13px;
+        }
     </style>
 </head>
 <body>
 
     <div id="cronometro"></div>
     <button id="startButton" onclick="start()">Iniciar</button>
-    <button id="stopButton" onclick="stop()">Parar</button>
+    <button id="stopButton" onclick="stop()">Parar</button> <br>
+    <p class="footer">Criado por <a href="https://github.com/PauloSilva92" target="_blank">Paulo Roberto da Silva</a></p>
 
     <script>
         var cronometro = document.getElementById('cronometro');

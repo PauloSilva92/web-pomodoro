@@ -1,0 +1,18 @@
+{
+  "name": "web-pomodoro",
+  "version": "1.0.0",
+  "description": "Uma versão web de um cronometro para uso da técnica de gerenciamento de tempo comodoro",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "comodoro",
+    "cronometro"
+  ],
+  "author": "Paulo Roberto da Silva <paulorob_s@hotmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pomodoro</title>
+    <style>
+        body{
+            background-color: #fff;
+            font-size: 150px;
+            text-align: center;
+            padding: 10%;
+            font-family: 'Roboto', sans-serif;
+        }
+        #startButton{
+            padding: 20px;
+            font-size:50px;
+            color: #fff;
+            border: none;
+            background-color: #00cc44;
+        }
+        #stopButton{
+            padding: 20px;
+            font-size:50px;
+            color: #fff;
+            border: none;
+            background-color: #ff6666;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="cronometro"></div>
+    <button id="startButton" onclick="start()">Iniciar</button>
+    <button id="stopButton" onclick="stop()">Parar</button>
+
+    <script>
+        var cronometro = document.getElementById('cronometro');
+        var startButton = document.getElementById('startButton');
+        var stopButton = document.getElementById('stopButton');
+        var audio = new Audio('alarm.mp3');
+        var segundos = 0;
+        var minutos = 0;
+
+        stopButton.setAttribute('style','display:none');
+        setCronometro(minutos, segundos);
+
+        function start(){
+            //segundos = 1;
+            stopButton.setAttribute('style','display:float');
+            startButton.setAttribute('style','display:none');
+            contador = window.setInterval(function(){
+                if(segundos == 59){
+                    setCronometro(minutos, segundos);
+                    segundos = 0;
+                    minutos++;
+                    return;
+                }
+                setCronometro(minutos, segundos);
+                segundos++;
+            },1000)
+        }
+
+        function stop(){
+            stopAlarm();
+            window.clearInterval(contador);
+            startButton.setAttribute('style','display:float');
+            stopButton.setAttribute('style','display:none');
+            segundos = 0;
+            minutos = 0;
+            setCronometro(minutos,segundos);
+        }
+
+        function setCronometro(minutos, segundos){
+            if(minutos>=25){
+                playAlarm();
+                return;
+            }
+            if(minutos<10){
+                minutos = "0"+minutos;
+            }
+            if(segundos<10){
+                segundos = "0"+segundos;
+            }
+            cronometro.innerHTML = minutos+":"+segundos;
+        }
+
+        function playAlarm(){
+            audio.play();
+        }
+        function stopAlarm(){
+            audio.pause();
+        }
+        
+    </script>
+</body>
+</html>

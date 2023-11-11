@@ -4,28 +4,31 @@
     <meta charset="UTF-8">
     <title>Pomodoro</title>
     <style>
-        body{
+        body {
             background-color: #fff;
             font-size: 150px;
             text-align: center;
             padding: 10%;
             font-family: 'Roboto', sans-serif;
         }
-        #startButton{
+        
+        #startButton {
             padding: 20px;
             font-size:50px;
             color: #fff;
             border: none;
             background-color: #00cc44;
         }
-        #stopButton{
+
+        #stopButton {
             padding: 20px;
             font-size:50px;
             color: #fff;
             border: none;
             background-color: #ff6666;
         }
-        .footer{
+
+        .footer {
             font-size:13px;
         }
     </style>
@@ -45,14 +48,14 @@
         var seconds = 0;
         var minutes = 0;
 
-        stopButton.setAttribute('style','display:none');
+        stopButton.setAttribute('style', 'display:none');
         settimer(minutes, seconds);
 
-        function start(){
+        function start() {
             seconds = 1;
             stopButton.setAttribute('style','display:float');
             startButton.setAttribute('style','display:none');
-            contador = window.setInterval(function(){
+            contador = window.setInterval(()=> {
                 if(seconds == 59){
                     settimer(minutes, seconds);
                     seconds = 0;
@@ -61,37 +64,41 @@
                 }
                 settimer(minutes, seconds);
                 seconds++;
-            },1000)
+            }, 1000)
         }
 
-        function stop(){
+        function stop() {
             stopAlarm();
             window.clearInterval(contador);
-            startButton.setAttribute('style','display:float');
-            stopButton.setAttribute('style','display:none');
+            startButton.setAttribute('style', 'display:float');
+            stopButton.setAttribute('style', 'display:none');
             seconds = 0;
             minutes = 0;
             settimer(minutes,seconds);
         }
 
-        function settimer(minutes, seconds){
-            if(minutes>=25){
+        function settimer(minutes, seconds) {
+            if (minutes>=25) {
                 playAlarm();
                 return;
             }
-            if(minutes<10){
-                minutes = "0"+minutes;
+
+            if (minutes<10) {
+                minutes = "0" + minutes;
             }
-            if(seconds<10){
-                seconds = "0"+seconds;
+
+            if (seconds<10) {
+                seconds = "0" + seconds;
             }
-            timer.innerHTML = minutes+":"+seconds;
+
+            timer.innerHTML = minutes + ":" + seconds;
         }
 
-        function playAlarm(){
+        function playAlarm() {
             audio.play();
         }
-        function stopAlarm(){
+
+        function stopAlarm() {
             audio.pause();
         }
         
